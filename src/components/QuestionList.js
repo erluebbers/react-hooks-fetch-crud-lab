@@ -19,7 +19,7 @@ function QuestionList() {
     <section>
       <h1>Quiz Questions</h1>
       <ul> {questions.map((question) => (
-        <QuestionItem question={question} handleDelete={handleDelete}/>
+        <QuestionItem key={question.id} question={question} handleDelete={handleDelete}/>
       ))}
       </ul>
     </section>

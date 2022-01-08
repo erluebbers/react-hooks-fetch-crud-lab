@@ -17,13 +17,26 @@ function QuestionItem({ question, handleDelete }) {
     .then(() => handleDelete(question))
   }
 
+  function changeAnswer(event) {
+    
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        correctIndex:  event.target.value
+      }),
+    })
+  }
+
   return (
     <li>
       <h4>Question {id}</h4>
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
-        <select defaultValue={correctIndex}>{options}</select>
+        <select defaultValue={correctIndex} onChange={changeAnswer}>{options}</select>
       </label>
       <button onClick={handleDeleteClick}>Delete Question</button>
     </li>
